@@ -4,7 +4,6 @@ import 'screens/quiz_screen.dart';
 
 void main() {
   AppConfig.validate();
-  print('API key length: ${AppConfig.quizApiKey.length}');
   runApp(const QuizApp());
 }
 
