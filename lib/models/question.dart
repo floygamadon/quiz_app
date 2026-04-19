@@ -15,6 +15,7 @@ class Question {
     required this.category,
   });
 
+  // Factory constructor — converts raw JSON map -> Question object
   factory Question.fromJson(Map<String, dynamic> json) {
     final rawAnswers = (json['answers'] as List? ?? [])
         .whereType<Map<String, dynamic>>()
@@ -36,6 +37,7 @@ class Question {
     );
   }
 
+  // Returns available answers shuffled
   List<String> get shuffledAnswers {
     final items = [...answers];
     items.shuffle();

@@ -71,6 +71,24 @@ class _QuizScreenState extends State<QuizScreen> {
       if (answer == correct) _score++;
     });
 
+    // 5.1 Snack Bar Feedback
+    final isCorrect = answer == correct;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          isCorrect ? '✅ Correct!' : '❌ Wrong! Correct: $correct',
+        ),
+        backgroundColor:
+        isCorrect ? Colors.green.shade700 : Colors.red.shade700,
+        duration: const Duration(milliseconds: 1200),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+
+    // existing delay
     Future.delayed(const Duration(milliseconds: 1500), _nextQuestion);
   }
 
