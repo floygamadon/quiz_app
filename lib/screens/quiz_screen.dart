@@ -170,6 +170,7 @@ class _QuizScreenState extends State<QuizScreen> {
     }
 
     final question = _questions[_currentIndex];
+    final progress = (_currentIndex + 1) / _questions.length;
 
     return Scaffold(
       appBar: AppBar(
@@ -181,23 +182,35 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(question.question, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 20),
-            ..._currentAnswers.map((option) => Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: ElevatedButton(
-                onPressed: () => _onAnswerTap(option),
-                style: ElevatedButton.styleFrom(backgroundColor: _buttonColor(option)),
-                child: Text(option),
+      body: Column(
+        children: [
+          LinearProgressIndicator(
+            value: progress,
+            minHeight: 6,
+          ),
+
+            Expanded(
+              child: Padding(
+              padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(question.question, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 20),
+                  ..._currentAnswers.map((option) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: ElevatedButton(
+                        onPressed: () => _onAnswerTap(option),
+                        style: ElevatedButton.styleFrom(backgroundColor: _buttonColor(option)),
+                        child: Text(option),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            )),
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
