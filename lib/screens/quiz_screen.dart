@@ -27,6 +27,18 @@ class _QuizScreenState extends State<QuizScreen> {
     _loadQuestions();
   }
 
+  /// Add more points for more difficult answers
+  int _pointsForDifficulty(String difficulty) {
+    switch (difficulty) {
+      case 'HARD':
+        return 3;
+      case 'MEDIUM':
+        return 2;
+      default:
+        return 1; // EASY or fallback
+    }
+  }
+
   Future<void> _loadQuestions() async {
     setState(() {
       _loading = true;
@@ -68,15 +80,25 @@ class _QuizScreenState extends State<QuizScreen> {
     setState(() {
       _selectedAnswer = answer;
       _answered = true;
-      if (answer == correct) _score++;
+      final q = _questions[_currentIndex];
+
+      if (answer == correct) {
+        _score += _pointsForDifficulty(q.difficulty);
+      }
     });
 
     // 5.1 Snack Bar Feedback
     final isCorrect = answer == correct;
+    final q = _questions[_currentIndex];
+    final points = _pointsForDifficulty(q.difficulty);
+
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          isCorrect ? '✅ Correct!' : '❌ Wrong! Correct: $correct',
+          isCorrect
+              ? '✅ Correct! +$points'
+              : '❌ Wrong! Correct: $correct',
         ),
         backgroundColor:
         isCorrect ? Colors.green.shade700 : Colors.red.shade700,
