@@ -4,14 +4,25 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+# Quiz App (Flutter + QuizAPI)
 
-A few resources to get you started if this is your first Flutter project:
+## Author
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Tony Nguyen
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Description
+
+This is a mobile quiz application built using Flutter. The app fetches multiple-choice questions from the QuizAPI and displays them to the user in an interactive format.
+
+Users can select answers, receive instant feedback, and track their score throughout the quiz. The app also includes enhanced features such as difficulty-based scoring and a progress bar.
+
+## Features
+
+* Fetches real-time questions from QuizAPI
+* Multiple-choice answer quiz
+* Instant feedback using SnackBar
+* Difficulty-based scoring system (Easy, Medium, Hard)
+* Progress bar to track quiz completion
+* Final results screen with total score
+
+
